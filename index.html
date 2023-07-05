@@ -44,6 +44,7 @@
             return iframe
         }
         document.querySelector('#test').addEventListener('click', function() {
+            window.location.href = 'https://share.bignews.app?p=1';
             var iframe = getIframe();
             iframe.src = 'https://share.bignews.app?p=1';
         });
