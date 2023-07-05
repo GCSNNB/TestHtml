@@ -25,7 +25,7 @@
 
 <body>
     <div>
-        <a href="https://share.bignews.app?p=1">链接跳转打开测试</a>
+        <a href="https://share.bignews.app?p=1">链接跳转打开测试1</a>
     </div>
     <div>
         <span id="test">iframe 打开</span>
@@ -47,6 +47,11 @@
             window.location.href = 'https://share.bignews.app?p=1';
             var iframe = getIframe();
             iframe.src = 'https://share.bignews.app?p=1';
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var element = document.querySelector('#myDiv');
+            console.log(element.textContent);
+            // 在这里可以对选择的元素进行进一步操作
         });
     </script>
 </body>
