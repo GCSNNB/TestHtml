@@ -24,8 +24,9 @@
 </head>
 
 <body>
+    <p>页面可见性状态：<span id="status">可见</span></p>
     <div>
-        <a href="https://share.bignews.app?p=1">链接跳转打开测试</a>
+        <a href="https://share.bignews.app?p=1">链接跳转打开测试_1</a>
     </div>
     <div>
         <span id="test">iframe 打开</span>
@@ -80,10 +81,15 @@
         var enterH5 = true;
         // 点击按钮时尝试调起App
         document.querySelector('#test1').addEventListener('click', function () {
-            window.location.href = 'https://m.163.com/newsapp/applinks.html';
+            window.location.href = 'https://share.bignews.app?p=1';
+            // window.location.href = 'https://m.163.com/newsapp/applinks.html';
             setTimeout(function() {
+                
                 if (enterH5) {
                     window.location.href = 'https://appclip.apple.com/id?p=co.notsobig.bignews.Clip';
+                    receiveCallbackFromNative('进入Universal');
+                } else {
+                    receiveCallbackFromNative('进入APP');
                 }
             }, 50); // 500 毫秒
         });
@@ -94,14 +100,15 @@
                 // 页面变为不可见状态
                 if (document.visibilityState === 'hidden') {
                     // 切换标签页
-                    
+                    showToast('enter Universal');
                 } else {
                     // 进入后台
                     enterH5 = false;
+                    showToast('enter Background');
                 }
             } else {
                 // 页面变为可见状态
-                
+                showToast('enter Foreground');
             }
         });
 
@@ -112,6 +119,12 @@
         //         window.location.href = 'https://appclip.apple.com/id?p=co.notsobig.bignews.Clip';
         //     }, 100); // 1000 毫秒即 1 秒
         // };
+
+        function receiveCallbackFromNative(message) {
+            // 在页面上显示回调信息
+            var statusElement = document.getElementById('status');
+            statusElement.innerText = message;
+        }
     </script>
 </body>
 
