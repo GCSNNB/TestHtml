@@ -25,7 +25,7 @@
 
 <body>
     <div>
-        <a href="https://share.bignews.app?p=1">链接跳转打开测试_1</a>
+        <a href="https://share.bignews.app?p=1">链接跳转打开测试_2</a>
     </div>
     <div>
         <span id="test">iframe 打开</span>
@@ -75,36 +75,15 @@
             setTimeout(function() {
                 window.location.href = 'https://appclip.apple.com/id?p=co.notsobig.bignews.Clip';
             }, 100); // 2000 毫秒即 2 秒
-            
-            // var iframe = getIframe();
-            // iframe.src = 'https://share.bignews.app?p=1';
         });
 
         // 点击按钮时尝试调起App
         document.querySelector('#test1').addEventListener('click', function () {
-            // 尝试调起App的URL Scheme
             window.location.href = 'https://share.bignews.app?p=1';
-
-            // 设置一个定时器，在一定时间后检查是否成功调起App
-            var startTime = Date.now();
-            var timeout = 3000; // 设置超时时间，3秒
-
-            var checkAppInterval = setInterval(function () {
-                // 如果成功调起App，则清除定时器
-                if (Date.now() - startTime < timeout) {
-                    clearInterval(checkAppInterval);
-                    // 在这里可以执行调起成功后的操作
-                    showToast('Success');
-                }
-            }, 200); // 每200毫秒检查一次
-
-            // 超过超时时间仍未成功调起，则清除定时器，并执行调起失败后的操作
-            setTimeout(function () {
-                clearInterval(checkAppInterval);
+            setTimeout(function() {
+                showToast(window.location.href)
                 window.location.href = 'https://appclip.apple.com/id?p=co.notsobig.bignews.Clip';
-                console.log('App调起失败！');
-                showToast('Failed');
-            }, timeout);
+            }, 100); // 2000 毫秒即 2 秒
         });
 
         // 页面加载完成后显示toast提示
