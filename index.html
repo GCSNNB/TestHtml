@@ -25,7 +25,7 @@
 
 <body>
     <div>
-        <a href="https://share.bignews.app?p=1">链接跳转打开测试</a>
+        <a href="https://share.bignews.app?p=1">链接跳转打开测试_5</a>
     </div>
     <div>
         <span id="test">iframe 打开</span>
@@ -83,7 +83,18 @@
             setTimeout(function() {
                 showToast(window.location.href)
                 window.location.href = 'https://appclip.apple.com/id?p=co.notsobig.bignews.Clip';
-            }, 1000); // 2000 毫秒即 2 秒
+            }, 500); // 2000 毫秒即 2 秒
+        });
+
+        // 页面隐藏或不再可见时的处理
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                // 页面被隐藏，可以记录吊起App前的时间戳等操作
+                
+            } else {
+                // 页面重新可见，可以进行后续操作，比如刷新页面以获取可能的回调信息
+                
+            }
         });
 
         // 页面加载完成后显示toast提示
