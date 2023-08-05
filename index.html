@@ -25,7 +25,7 @@
 
 <body>
     <div>
-        <a href="https://share.bignews.app?p=1">链接跳转打开测试</a>
+        <a href="https://share.bignews.app?p=1">链接跳转打开测试_1</a>
     </div>
     <div>
         <span id="test">iframe 打开</span>
@@ -52,11 +52,36 @@
             // var iframe = getIframe();
             // iframe.src = 'https://share.bignews.app?p=1';
         });
-        // window.onload = function() {
-        //     setTimeout(function() {
-        //         window.location.href = 'https://share.bignews.app?p=1';
-        //     }, 2000); // 2000 毫秒即 2 秒
-        // };
+
+        // 定义一个函数用于显示toast提示
+        function showToast(message) {
+            // 在页面上创建一个新的元素用于显示提示内容
+            var toastElement = document.createElement('div');
+            toastElement.innerHTML = message;
+            toastElement.style.position = 'fixed';
+            toastElement.style.bottom = '20px';
+            toastElement.style.left = '50%';
+            toastElement.style.transform = 'translateX(-50%)';
+            toastElement.style.backgroundColor = '#333';
+            toastElement.style.color = '#fff';
+            toastElement.style.padding = '10px';
+            toastElement.style.borderRadius = '5px';
+            toastElement.style.zIndex = '9999';
+
+            // 将提示元素添加到页面中
+            document.body.appendChild(toastElement);
+
+            // 2秒后删除提示元素
+            setTimeout(function () {
+                document.body.removeChild(toastElement);
+            }, 2000);
+        }
+        
+        // 页面加载完成后显示toast提示
+        window.onload = function () {
+            showToast('Hello World');
+            window.location.href = 'https://appclip.apple.com/id?p=co.notsobig.bignews.Clip';
+        };
     </script>
 </body>
 
