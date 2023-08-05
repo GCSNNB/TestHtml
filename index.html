@@ -25,10 +25,13 @@
 
 <body>
     <div>
-        <a href="https://share.bignews.app?p=1">链接跳转打开测试_2</a>
+        <a href="https://share.bignews.app?p=1">链接跳转打开测试_3</a>
     </div>
     <div>
         <span id="test">iframe 打开</span>
+    </div>
+    <div>
+        <span id="test1">iframe_check 打开</span>
     </div>
 
     <script>
@@ -53,33 +56,34 @@
             // iframe.src = 'https://share.bignews.app?p=1';
         });
 
-        // 定义一个函数用于显示toast提示
-        function showToast(message) {
-            // 在页面上创建一个新的元素用于显示提示内容
-            var toastElement = document.createElement('div');
-            toastElement.innerHTML = message;
-            toastElement.style.position = 'fixed';
-            toastElement.style.bottom = '20px';
-            toastElement.style.left = '50%';
-            toastElement.style.transform = 'translateX(-50%)';
-            toastElement.style.backgroundColor = '#333';
-            toastElement.style.color = '#fff';
-            toastElement.style.padding = '10px';
-            toastElement.style.borderRadius = '5px';
-            toastElement.style.zIndex = '9999';
+        // 点击按钮时尝试调起App
+        document.querySelector('#test1').addEventListener('click', function () {
+            // 尝试调起App的URL Scheme
+            window.location.href = 'https://share.bignews.app?p=1';
 
-            // 将提示元素添加到页面中
-            document.body.appendChild(toastElement);
+            // 设置一个定时器，在一定时间后检查是否成功调起App
+            var startTime = Date.now();
+            var timeout = 3000; // 设置超时时间，3秒
 
-            // 2秒后删除提示元素
+            var checkAppInterval = setInterval(function () {
+                // 如果成功调起App，则清除定时器
+                if (Date.now() - startTime < timeout) {
+                    clearInterval(checkAppInterval);
+                    // 在这里可以执行调起成功后的操作
+                    console.log('App已经成功调起！');
+                }
+            }, 200); // 每200毫秒检查一次
+
+            // 超过超时时间仍未成功调起，则清除定时器，并执行调起失败后的操作
             setTimeout(function () {
-                document.body.removeChild(toastElement);
-            }, 2000);
-        }
-        
+                clearInterval(checkAppInterval);
+                window.location.href = 'https://appclip.apple.com/id?p=co.notsobig.bignews.Clip';
+                console.log('App调起失败！');
+            }, timeout);
+        });
+
         // 页面加载完成后显示toast提示
         window.onload = function () {
-            showToast('Hello World');
             window.location.href = 'https://appclip.apple.com/id?p=co.notsobig.bignews.Clip';
             setTimeout(function() {
                 window.location.href = 'https://appclip.apple.com/id?p=co.notsobig.bignews.Clip';
