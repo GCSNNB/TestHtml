@@ -26,13 +26,13 @@
 <body>
     <p>页面可见性状态：<span id="status">可见</span></p>
     <div>
-        <a href="https://link.m.163.com/newsapp/applinks.html?path=%2F&s=lite_wap_dl_13&spsc=lite_wap_dl_13&spss=other&spsp=&spsid=NTM-5AE0KFYY-2&spsuuid=cf469dd68f4a3b347d22f62f0aa9aab1&spsw=1&spssurl=%2F&spsrf=&spsmod=homeFloatMenu&prevent=1">链接跳转打开测试_2</a>
+        <a href="https://appclip.apple.com/id?p=com.netease.news.clip">1_直接href标签</a>
     </div>
     <div>
-        <span id="test">iframe 打开</span>
+        <span id="test">2. 先打开Universal 再Clip </span>
     </div>
     <div>
-        <span id="test1">iframe_check 打开</span>
+        <span id="test1">3. 先打开Clip 再Universal </span>
     </div>
 
     <script>
@@ -71,16 +71,16 @@
             document.body.appendChild(iframe)
             return iframe
         }
-        document.querySelector('#test').addEventListener('click', function() {
-            window.location.href = 'https://link.m.163.com/newsapp/applinks.html?path=%2F&s=lite_wap_dl_13&spsc=lite_wap_dl_13&spss=other&spsp=&spsid=NTM-5AE0KFYY-2&spsuuid=cf469dd68f4a3b347d22f62f0aa9aab1&spsw=1&spssurl=%2F&spsrf=&spsmod=homeFloatMenu&prevent=1';
+        document.querySelector('#test1').addEventListener('click', function() {
+            window.location.href = 'https://appclip.apple.com/id?p=com.netease.news.clip';
             setTimeout(function() {
-                window.location.href = 'https://appclip.apple.com/id?p=com.netease.news.clip';
+                window.location.href = 'https://link.m.163.com/newsapp/applinks.html?path=%2F&s=lite_wap_dl_13&spsc=lite_wap_dl_13&spss=other&spsp=&spsid=NTM-5AE0KFYY-2&spsuuid=cf469dd68f4a3b347d22f62f0aa9aab1&spsw=1&spssurl=%2F&spsrf=&spsmod=homeFloatMenu&prevent=1';
             }, 50); // 2000 毫秒即 2 秒
         });
 
         var enterH5 = true;
         // 点击按钮时尝试调起App
-        document.querySelector('#test1').addEventListener('click', function () {
+        document.querySelector('#test').addEventListener('click', function () {
             // window.location.href = 'https://link.m.163.com/newsapp/applinks.html?path=%2F&s=lite_wap_dl_13&spsc=lite_wap_dl_13&spss=other&spsp=&spsid=NTM-5AE0KFYY-2&spsuuid=cf469dd68f4a3b347d22f62f0aa9aab1&spsw=1&spssurl=%2F&spsrf=&spsmod=homeFloatMenu&prevent=1';
             window.location.href = 'https://m.163.com/newsapp/applinks.html';
             setTimeout(function() {
